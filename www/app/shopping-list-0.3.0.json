@@ -1,0 +1,41 @@
+{
+	"name": "Shopping List",
+	"short-description": "Shopping List With Stock Tracking",
+	"version": "0.3.0",
+	"entrypoint": "app.ts",
+	"schema": 2,
+	"migrations": [
+		{
+			"direction": "up",
+			"schema": 1
+		},
+		{
+			"direction": "up",
+			"schema": 2
+		},
+		{
+			"direction": "down",
+			"schema": 1
+		},
+		{
+			"direction": "down",
+			"schema": 2
+		}
+	],
+	"icon": "shopping-list-icon-694be60c.png",
+	"accent-color": "#ec4899",
+	"changelog": "shopping-list-0.3.0-changes.txt",
+	"authors": [
+		{
+			"name": "Olivier Forget",
+			"email": "me@olivierforget.net",
+			"url": "https://olivierforget.net"
+		}
+	],
+	"code": "https://github.com/teleclimber/ShoppingListDropApp",
+	"website": "",
+	"funding": "",
+	"license": "MIT",
+	"license-file": "",
+	"release-date": "2024-08-09"
+}

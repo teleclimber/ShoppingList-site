@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>Shopping List Dropserver App</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link href="main.css" rel="stylesheet" />
+	<link rel="icon" href="app/shopping-list-icon-694be60c.png" />
+</head>
+<body>
+	<header style="border-color: #ec4899">
+		<img src="app/shopping-list-icon-694be60c.png" />
+		<div>
+			<hgroup>
+				<h1>Shopping List</h1>
+				<p>&ldquo;Shopping List With Stock Tracking&rdquo;</p>
+			</hgroup>
+		</div>
+	</header>
+	<main>
+		<section>
+			<p>
+				To install: paste this link into the "New App" page of your
+				<a href="https://dropserver.org">Dropserver</a> instance:
+			</p>
+			<ds-install-app>
+				<input type="text" readonly value=""/>
+				<a href="app/app-listing.json">App Link</a>
+				<button></button>
+			</ds-install-app>
+		</section>
+		<aside>
+			<p>Shopping List runs on <a href="https://dropserver.org">Dropserver</a>, 
+				an open source platform for your personal web services.</p>
+			<a href="https://dropserver.org" class="dropserver-logo">
+				dr<span class="drop-o">o</span>p<span class="s">server</span></a>
+		</aside>
+	</main>
+
+	<article>
+		<p><strong>ShoppingList</strong> is a <a href="https://dropserver.org">Dropserver</a> app that helps you keep track of the things you need to buy the next time you go to the store.</p>
+
+		<p>This app was built after some frustration going to the store and forgetting to buy things that we needed to stock up on.</p>
+		
+		<p>The idea is that you add an item once, along with a category and the stores where the item can be bought. When you notice that you're running low on, say, coffee filters, you type "filt" in the Search bar, hit the "Buy" button, and move on with your day. The next time you're at the store, "Coffee filters" will show up in your list.</p>
+
+		<p>Before going to the store, you can run through your list of items to check stock on. Indeed, items can be marked to show up in the "check stock" listing. You can run down that list and quickly check if it's time to buy more. Hit "Buy" on any item that is running low.</p>
+
+		<section class="screenshots">
+			<figure>
+				<img src="Screenshot-main-list.png">
+				<figcaption>The main listing of items.</figcaption>
+			</figure>
+			<figure>
+				<img src="Screenshot-shop-mode.png">
+				<figcaption>The app in "Go Shop" mode.</figcaption>
+			</figure>
+		</section>
+
+		<h2>Usage Notes</h2>
+
+		<p>The app is a Progressive Web App. After installing on your Dropserver instance you can add it to the home screen of your phone for speedy access. More info on adding apps to your home screen are available <a href="https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Guides/Installing">here</a>.</p>
+
+		<p>Start by creating some categories. These help group items and makes it easier to navigate the store while shopping. Examples of categories: "Fruits and Vegetables", "Dairy", "Frozen", ...</p>
+
+		<p>Add the stores where you regularly shop, and select the categories that can be found at this store.</p>
+
+		<p>Add items as needed. Try to avoid duplicates as it will make it harder to manage your shop list. Note that for each item you can select specific stores instead of the defaults.</p>
+
+		<h2>More Information</h2>
+
+		<p>See the ShoppingList app's <a href="app/index.html">details and version history</a>.</p>
+
+		<p>ShoppingList was created by <a href="https://olivierforget.net">Olivier Forget</a>. This site's source code is on <a href="https://github.com/teleclimber/ShoppingList-site">github.com/teleclimber/ShoppingList-site</a>.</p>
+		
+	</article>
+
+	<script>
+		class DsInstallApp extends HTMLElement {
+			constructor() {
+				self = super();
+			}
+			connectedCallback() {
+				const input_elem = self.querySelector("input");
+				const link_elem = self.querySelector("a");
+				link_elem.innerText = "Drag and Drop this link";
+				input_elem.value = link_elem.href;
+				const button_elem = self.querySelector("button");
+				const button_text = "Copy to Clipboard"
+				button_elem.innerHTML = button_text;
+				button_elem.addEventListener( "click", () => {
+					input_elem.select();
+					document.execCommand("copy");
+					button_elem.innerHTML = "Copied!";
+					setTimeout(() => {
+						button_elem.innerHTML = button_text;
+					}, 1500);
+				});
+				self.classList.add("connected");
+			}
+		}
+		customElements.define("ds-install-app", DsInstallApp);
+	</script>
+</body>
+</html>
